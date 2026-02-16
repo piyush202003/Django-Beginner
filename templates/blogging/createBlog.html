@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Create New Blog
+{% endblock title %}
+
+{% block content %}
+    <form class="card form-card" method="post" style=".form-card input{border: 1px;}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class='btn btn-primary' type="submit">Create Blog</button>
+    </form>    
+{% endblock content %}
+    

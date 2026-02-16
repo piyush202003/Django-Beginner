@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Generate PDF
+{% endblock title %}
+
+{% block content %}
+    <div class="text-end mb-2">
+        <form class="d-flex my-2 my-lg-0" method="GET">
+            <input class="form-control me-sm-2" name="search" type="text" placeholder="Search Day e.g Monday"/>
+            <button class="btn btn-success my-2 my-sm-0" type="submit" > Search </button>
+        </form>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-bordered text-center border-2" id="recipeTable">
+            <thead>
+                <tr class="table-primary">
+                    <th scope="col">Sr.No</th>
+                    <th scope="col">Day-Time</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody style="background-color: wheat;">
+                {% if not recipes %}
+                    <td scope="row">NaN</td>
+                    <td>There are no Recipes</td>
+                    <td>There are no Recipes</td>
+                    <td>There are no Recipes</td>
+                {% else %}
+                    {% for resp in recipes %}
+                        <tr class="">
+                            <td scope="row">{{ forloop.counter }}</td>
+                            <td style="width: 15%;">{{ resp.day }}</td>
+                            <td style="width: 25%;">{{ resp.name }}</td>
+                            <td style="width: 35%;">{{ resp.description }}</td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col text-start">
+            <button class="btn btn-warning mb-2" id="downloadPdf">Download PDF</button>
+        </div>
+        <div class="col text-end">
+            <a href="{% url 'RMPIndex' %}" class="btn btn-dark">Go Back</a>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <script>
+        const download = document.querySelector('#downloadPdf');
+        const recipeTable = document.querySelector('#recipeTable');
+        download.addEventListener('click',(e)=>{
+            html2pdf(recipeTable);
+            alert('PDF is downloaded successfully')
+        })
+    </script>
+{% endblock content %}
+    

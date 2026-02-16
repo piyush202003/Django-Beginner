@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <!-- Hover added -->
+    <div class="list-group">
+        <a name="" id="" class="btn btn-primary list-group-item mt-1 mb-1" href="{% url 'todolistIndex' %}" role="button">
+            To Do List App
+        </a>
+        <a name="" id="" class="btn btn-primary list-group-item mt-1 mb-1" href="{% url 'bloggingIndex' %}" role="button">
+            Blogging Platform
+        </a>
+        <a name="" id="" class="btn btn-primary list-group-item mt-1 mb-1" href="{% url 'wikipediaSearchHome' %}" role="button">
+            Wikipedia search app Project
+        </a>
+        <a name="" id="" class="btn btn-primary list-group-item mt-1 mb-1" href="{% url 'multipleSubmitIndex' %}" role="button">
+            Multiple Submit Button In One Form
+        </a>
+        <a name="" id="" class="btn btn-primary list-group-item mt-1 mb-1" href="{% url 'RMPIndex' %}" role="button">
+            Recipe Meal Planner
+        </a>
+        <a name="" id="" class="btn btn-primary list-group-item mt-1 mb-1" href="{% url 'NestestSerializerIndex' %}" role="button">
+            Nestest Serializer
+        </a>
+    </div>
+    
+{% endblock content %}

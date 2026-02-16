@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block title %}
+    To Do List App
+{% endblock title %}
+
+
+{% block content %}
+    <h4 class="text-center text-light">Welcome to To Do List App</h4>
+    <p class='text-bg-secondary p-2 border-secondary' > Do the listed work</p>
+    <form class ='card border-primary mb-1' action="" method="post">
+        <div class='card-body col-span-1'>
+            <h4 class="card-title text-center">ENTER TODO LIST</h4>
+            {% csrf_token %}
+            <label for="title">Title : </label>
+            <input class="border-2" type="text" name='title' placeholder='Enter Title' required>
+            <label for="description">Description : </label>
+            <textarea class='border-2'name="description" id="description" placeholder="Enter the description of work"></textarea>
+            <label for="date">Date</label>
+            <input class='border-2' type="date" name='date'>
+            <button class="btn btn-secondary" type="submit">Submit</button>
+        </div>
+    </form>
+    {% comment %} <div class='card border-primary mb-1'>
+        {% csrf_token %}
+        {{ form.as_div }}
+        <button class="btn" type="submit"></button>
+    </div> {% endcomment %}
+    
+        
+    <div class="card border-primary">
+        {% if lists %}
+            <h5 class='text-center text-primary p-1'>This is the list</h5>
+            {% for list in lists %}
+                <div class="card-body m-1" style="background-color: beige; border-radius: 20px;">
+                    <h4 class="card-subtitle">{{ list.title }}</h4>
+                    <p class="card-text">{{ list.description }}</p>
+                    <div class="row justify-content-conter align-items-center g-2">
+                        <div class="col text-start">{{ list.date }}</div>
+                        <div class="col text-end">
+                            <form action="{% url 'deleteTodo' list.id %}">
+                                {% csrf_token %}
+                                <button class='btn btn-danger' value='remove' type="submit"> &nbsp; Remove</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <h5 class='text-center text-secondary p-2'>There are not any listed work</h5>
+        {% endif %}
+        
+    </div>
+{% endblock content %}
+

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Blogging Platform
+{% endblock title %}
+    
+
+{% block content %}
+    <h4 class='text-center text-light pb-1 bg-secondary border-1' >Welcome to Blogging Platform</h4>
+    <div class="text-lg-end">
+        <a href="{% url 'createBlog' %}" class="btn btn-secondary">Create New Blog</a>
+    </div>
+    <div class="row">
+        {% for blog in blogs %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <a href="{% url 'blogDetails' blog.pk %}">
+                        <img src="{{ blog.image.url }}" alt="{{ blog.name }} Image">
+                    </a>
+                    <div class="card-body">
+                        <div class="card-title">{{ blog.name }}</div>
+                        <div class="card-text">{{ blog.short_description }}</div>
+                        <a href="{% url 'editBlog' blog.pk %}" class="btn btn-primary">Edit</a>
+                        <a href="{% url 'deleteBlog' blog.pk %}" class="btn btn-danger">Delete</a>
+                        <small class="card-text">Created AT = {{ blog.created_at }}</small>
+                        <small class="card-text">Last Update = {{ blog.updated_at }}</small>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+          
+{% endblock content %}

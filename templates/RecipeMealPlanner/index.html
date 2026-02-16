@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Recipe Meal Planner
+{% endblock title %}
+
+
+{% block content %}
+    <!-- <h3 class="bg-amber-200 text-center p-2 m-1">{{ user.username }}, Welcome to Recipe Meal Planner</h3> -->
+    <div class="container w-50">
+        <div class="card">
+            <form class="card-body" method="post">
+                {% csrf_token %}
+                <label class='form-label' for="day">Day - Time : </label>
+                <input class='form-control' type="text" name="day" id="day" placeholder="eg. Monday-Lunch/ Monday-Dinner">
+                <label class='form-label' for="name">Name : </label>
+                <input class='form-control' type="text" name="name" id="name" placeholder="eg. Dal Fry">
+                <label class='form-label' for="description">Description : </label>
+                <textarea class='form-control mb-2'name="description" id="description" placeholder="Description of the dish name"></textarea>
+                <button class='btn btn-primary' type="submit">New Recipe</button>
+            </form>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col text-start">
+            <a href="{% url 'RMPPdf' %}" class="btn btn-info mb-2">Generate PDF</a>
+        </div>
+        <div class="col text-end">
+            <form class="d-flex my-2 my-lg-0" method="GET">
+                <input class="form-control me-sm-2" name="search" type="text" placeholder="Search Day e.g Monday"/>
+                <button class="btn btn-success my-2 my-sm-0" type="submit" > Search </button>
+            </form>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-bordered text-center border-2">
+            <thead>
+                <tr class="table-primary">
+                    <th scope="col">Sr.No</th>
+                    <th scope="col">Day-Time</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody style="background-color: wheat;">
+                {% if not recipes %}
+                    <td scope="row">NaN</td>
+                    <td>There are no Recipes</td>
+                    <td>There are no Recipes</td>
+                    <td>There are no Recipes</td>
+                    <td>There are no Recipes</td>
+                {% else %}
+                    {% for resp in recipes %}
+                        <tr class="">
+                            <td scope="row">{{ forloop.counter }}</td>
+                            <td style="width: 15%;">{{ resp.day }}</td>
+                            <td style="width: 25%;">{{ resp.name }}</td>
+                            <td style="width: 35%;">{{ resp.description }}</td>
+                            <td style="width: 15%;">
+                                <a href="{% url 'RMPEditRecipe' resp.pk %}" class="btn btn-outline-info">Edit</a>
+                                <a href="{% url 'RMPDeleteRecipe' resp.pk %}" class="btn btn-outline-danger">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+        
+{% endblock content %}
+    
+    

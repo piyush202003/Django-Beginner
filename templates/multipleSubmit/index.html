@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Muliple Submit Button In One Form
+{% endblock title %}
+    
+
+{% block content %}
+    <form class='card p-3' action="" method="post">
+        {% csrf_token %}
+        <label for="email">Enter your email :- </label>
+        <input class='border-1 text-black p-2' type="email" name="email" placeholder="Enter your Email">
+        <label for="">Chosse What to do Subscribe or Unsubscribe</label>
+        <div class="row">
+            <button class="col btn btn-outline-success m-1" type="submit" name="subscribe">Subscribe</button>
+            <button class='col btn btn-outline-warning m-1' type="submit" name="unsubscribe">Unsubscribe</button>
+        </div>
+        
+    </form>
+{% endblock content %}
+    

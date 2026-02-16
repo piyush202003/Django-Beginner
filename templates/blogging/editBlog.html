@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Edit Blog
+{% endblock title %}
+
+{% block style %}
+    <style>
+    .form-card {
+    width: 400px;
+    margin: 40px auto;
+    padding: 25px;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.form-card p {
+    margin-bottom: 15px;
+}
+
+.form-card input,
+.form-card select,
+.form-card textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    background: #4f46e5;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #4338ca;
+}
+</style>
+{% endblock style %}
+    
+{% block content %}
+    <form class='card' action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button class='btn btn-outline-primary' type="submit">Save Changes</button>
+    </form>    
+{% endblock content %}
+    
