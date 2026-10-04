@@ -1,3 +1,4 @@
+# Python
 __pycache__/
 *.py[oc]
 build/
@@ -5,7 +6,34 @@ dist/
 wheels/
 *.egg-info
 
+# Virtual environment
+.venv/
+venv/
+env/
 
-.venv
-db.sqlite3
+# Environment variables / secrets
 .env
+.env.*
+!.env.example
+
+# Django
+*.log
+db.sqlite3
+db.sqlite3-journal
+
+# Django collected/static files
+staticfiles/
+media/
+
+# IDEs
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Python tooling
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/

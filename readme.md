@@ -4,7 +4,7 @@ b)permanent:Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 gunicorn myproject.wsgi:application
 uvicorn myproject.asgi:application
 
-..\.venv\Scripts\activate
+.venv\Scripts\activate
 while install use command :- uv pip install PACKEGNAME
 python version 3.10 :- uv python install 3.10
 
